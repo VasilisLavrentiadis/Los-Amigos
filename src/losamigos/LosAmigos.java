@@ -10,11 +10,13 @@ package losamigos;
  */
 public class LosAmigos {
     
-    //Question 1
+    //Questions 1-12
     
     private static void printQuestion(int questionNumber){
         System.out.println("\n---------------------- Question " + questionNumber + " ----------------------");
     }
+    
+    //Question 1, 2, 4, 10 & 11
     
     private static void printPlayer(String[] names, int[] ages, int[] points, int index, int start){
         switch (start) {
@@ -31,6 +33,8 @@ public class LosAmigos {
                 break;
         }
     }
+    
+    //Question 1
     
     private static int max(int[] array){
         int indexMax = 0;
@@ -95,6 +99,8 @@ public class LosAmigos {
         arr2[j] = temp;
     }
     
+    //Question 4
+    
     private static void bubbleSortDescending(String[] names, int[] ages, int[] points){
         int l = names.length;
         
@@ -109,7 +115,7 @@ public class LosAmigos {
         }
     }
     
-    //Question 5
+    //Question 5, 6 & 8
 
     private static float average(int[] array){
         float sum = 0;
@@ -123,6 +129,8 @@ public class LosAmigos {
         
     }
     
+    //Question 7
+    
     private static void swapWorstPlayer(String[] names, int[] ages, int[] points, String[] NAMES_RESERVES, int[] AGE_RESERVES, int[] POINTS_RESERVES){
         int indexLowestStart = min(points);
         int indexHighestReserve = max(POINTS_RESERVES);
@@ -131,6 +139,8 @@ public class LosAmigos {
         swap(ages, indexLowestStart, AGE_RESERVES, indexHighestReserve);
         swap(points, indexLowestStart, POINTS_RESERVES, indexHighestReserve);
     }
+    
+    //Question 9
     
     private static void swapOlderPlayers(String[] names, int[] ages, int[] points, String[] NAMES_RESERVES, int[] AGE_RESERVES, int[] POINTS_RESERVES){
         
@@ -160,6 +170,8 @@ public class LosAmigos {
         }
         return bestIndex;
     }
+    
+    //Question 10
         
     private static Object[] unitedSquads(String[] names, int[] ages, int[] points, String[] NAMES_RESERVES, int[] AGES_RESERVES, int[] POINTS_RESERVES){
         int totalLength = names.length + NAMES_RESERVES.length;
@@ -186,7 +198,27 @@ public class LosAmigos {
 
     }
     
+    //Question 11
+    
+    private static void bubbleSortAscending(String[] names, int[] ages, int[] points){
+        int l = names.length;
+        
+        for (int i = l - 1; i > 0; i--){
+            for (int j = 0; j < i; j++){
+                if (ages[j] > ages[j + 1]){
+                    swap(ages, j, j + 1);
+                    swap(names, j, j + 1);
+                    swap(points, j, j + 1);
+                }
+            }
+        }
+    }
+    
+    //Question 12
+    
     private static int binarySearch(int[] points, int target){
+        
+        
         int left = 0;
         int right = points.length - 1;
         
@@ -203,7 +235,7 @@ public class LosAmigos {
         
         return -1;
     }
-    
+        
     private static void replaceRetiredPlayer(String[] UNITED_NAMES, int[] UNITED_AGES, int[] UNITED_POINTS, int retiringPlayerPoints, String newName, int newAge, int newPoints){
         int retiringPlayerIndex = binarySearch(UNITED_POINTS, retiringPlayerPoints);
         
@@ -220,20 +252,18 @@ public class LosAmigos {
             UNITED_AGES[UNITED_AGES.length - 1] = newAge;
             UNITED_POINTS[UNITED_POINTS.length - 1] = newPoints;
             
-            System.out.println("Updated squad after replacing retiring player with " + UNITED_NAMES[UNITED_NAMES.length - 1] + " :");
+            System.out.println("\nUpdated squad after replacing retiring player with " + UNITED_NAMES[UNITED_NAMES.length - 1] + " :");
             
             bubbleSortDescending(UNITED_NAMES, UNITED_AGES, UNITED_POINTS);
             
             for (int i = 0; i < UNITED_NAMES.length; i++){
-                printPlayer(UNITED_NAMES, UNITED_AGES, UNITED_POINTS, i, 2);
+                printPlayer(UNITED_NAMES, UNITED_AGES, UNITED_POINTS, i, 1);
             }
         } else{
             System.out.println("Player with " + retiringPlayerPoints + " points not found!");
         }
     }
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String[] args) {
         
         String[] names = {"BOSS", "BLOCK", "BRAWN", "BRAYNT", "CLORKSAN"};
@@ -329,8 +359,8 @@ public class LosAmigos {
         //Question 11
         
         printQuestion(11);
-        bubbleSortDescending(NAMES_UNITED, POINTS_UNITED, AGES_UNITED);
-        System.out.println("Sorted by points in descending order:");
+        bubbleSortAscending(NAMES_UNITED, POINTS_UNITED, AGES_UNITED);
+        System.out.println("Sorted by points in ascending order:");
         for(int i = 0; i < NAMES_UNITED.length; i++){
             printPlayer(NAMES_UNITED, AGES_UNITED, POINTS_UNITED, i, 2);
         }
